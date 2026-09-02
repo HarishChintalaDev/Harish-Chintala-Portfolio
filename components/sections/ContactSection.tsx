@@ -33,7 +33,7 @@ const ResumeModal = dynamic(() => import("./ResumeModal"), {
 });
 
 type SubmissionStatus = "idle" | "submitting" | "success" | "error" | "fallback";
-type DeliveryMode = "checking" | "secure" | "email";
+type DeliveryMode = "server" | "direct" | "email";
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({ name: "", email: "", company: "", message: "" });
@@ -41,7 +41,7 @@ export default function ContactSection() {
   const [submissionStatus, setSubmissionStatus] = useState<SubmissionStatus>("idle");
   const [submissionMessage, setSubmissionMessage] = useState("");
   const [submittedName, setSubmittedName] = useState("");
-  const [deliveryMode, setDeliveryMode] = useState<DeliveryMode>("checking");
+  const [deliveryMode, setDeliveryMode] = useState<DeliveryMode>("direct");
   const [touchedEmail, setTouchedEmail] = useState(false);
   const [isResumeModalOpen, setIsResumeModalOpen] = useState(false);
 
@@ -80,12 +80,19 @@ export default function ContactSection() {
           cache: "no-store",
           signal: controller.signal,
         });
-        const payload = (await response.json()) as { secureDeliveryAvailable?: boolean };
+        const payload = (await response.json()) as {
+          secureDeliveryAvailable?: boolean;
+          serverDeliveryAvailable?: boolean;
+        };
         if (!controller.signal.aborted) {
-          setDeliveryMode(response.ok && payload.secureDeliveryAvailable ? "secure" : "email");
+          if (response.ok && payload.serverDeliveryAvailable) {
+            setDeliveryMode("server");
+          } else {
+            setDeliveryMode("direct");
+          }
         }
       } catch {
-        if (!controller.signal.aborted) setDeliveryMode("email");
+        if (!controller.signal.aborted) setDeliveryMode("direct");
       }
     };
 
@@ -146,7 +153,7 @@ export default function ContactSection() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (submissionStatus === "submitting" || deliveryMode === "checking") return;
+    if (submissionStatus === "submitting") return;
 
     if (deliveryMode === "email") {
       setSubmissionStatus("fallback");
@@ -159,69 +166,74 @@ export default function ContactSection() {
     setSubmissionStatus("submitting");
     setSubmissionMessage("");
 
+    const formattedName = formData.name.trim().replace(/\b\w/g, (c) => c.toUpperCase());
+    const formattedCompany = formData.company.trim();
+
     try {
-      const response = await fetch("/api/contact", {
+      if (deliveryMode === "server") {
+        const response = await fetch("/api/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        });
+        const payload = (await response.json().catch(() => ({}))) as {
+          error?: string;
+          message?: string;
+        };
+
+        if (response.ok) {
+          const name = formData.name.trim();
+          setSubmittedName(name);
+          setSubmissionMessage(payload.message || `Thank you, ${name}! Your message was delivered successfully.`);
+          setSubmissionStatus("success");
+          setFormData({ name: "", email: "", company: "", message: "" });
+          setTouchedEmail(false);
+          return;
+        }
+
+        // If server delivery returned an error, fall through to direct browser submission
+      }
+
+      // Direct client-side delivery via FormSubmit AJAX (clean, zero 503 errors, never blocked by cloud WAF)
+      const directRes = await fetch(`https://formsubmit.co/ajax/${PERSONAL_INFO.email}`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          "Visitor Name": formData.name,
+          "Email Address": formData.email,
+          "Company / Organization": formData.company || "N/A",
+          "Message": formData.message,
+          _subject: `📩 New Portfolio Inquiry from ${formattedName}${formattedCompany ? ` (${formattedCompany})` : ""}`,
+          _replyto: formData.email,
+          _template: "table",
+          _captcha: "false",
+        }),
       });
-      const payload = (await response.json().catch(() => ({}))) as {
-        error?: string;
+
+      const directData = (await directRes.json().catch(() => ({}))) as {
+        success?: boolean | string;
         message?: string;
       };
 
-      if (!response.ok) {
-        // Direct browser delivery fallback if Vercel serverless proxy is blocked or unavailable
-        try {
-          const formattedName = formData.name.trim().replace(/\b\w/g, (c) => c.toUpperCase());
-          const formattedCompany = formData.company.trim();
-          const directRes = await fetch(`https://formsubmit.co/ajax/${PERSONAL_INFO.email}`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Accept: "application/json",
-            },
-            body: JSON.stringify({
-              "Visitor Name": formData.name,
-              "Email Address": formData.email,
-              "Company / Organization": formData.company || "N/A",
-              "Message": formData.message,
-              _subject: `📩 New Portfolio Inquiry from ${formattedName}${formattedCompany ? ` (${formattedCompany})` : ""}`,
-              _replyto: formData.email,
-              _template: "table",
-              _captcha: "false",
-            }),
-          });
-          const directData = (await directRes.json().catch(() => ({}))) as {
-            success?: boolean | string;
-          };
-          if (
-            directRes.ok &&
-            directData &&
-            directData.success !== false &&
-            directData.success !== "false"
-          ) {
-            const name = formData.name.trim();
-            setSubmittedName(name);
-            setSubmissionMessage(`Thank you, ${name}! Your message was delivered successfully.`);
-            setSubmissionStatus("success");
-            setFormData({ name: "", email: "", company: "", message: "" });
-            setTouchedEmail(false);
-            return;
-          }
-        } catch {
-          // Proceed to error handling below
-        }
-
-        throw new Error(payload.error || "The portfolio API could not acknowledge the submission.");
+      if (
+        directRes.ok &&
+        directData &&
+        directData.success !== false &&
+        directData.success !== "false"
+      ) {
+        const name = formData.name.trim();
+        setSubmittedName(name);
+        setSubmissionMessage(`Thank you, ${name}! Your message was delivered successfully.`);
+        setSubmissionStatus("success");
+        setFormData({ name: "", email: "", company: "", message: "" });
+        setTouchedEmail(false);
+        return;
       }
 
-      const name = formData.name.trim();
-      setSubmittedName(name);
-      setSubmissionMessage(payload.message || `Thank you, ${name}! Your message was delivered successfully.`);
-      setSubmissionStatus("success");
-      setFormData({ name: "", email: "", company: "", message: "" });
-      setTouchedEmail(false);
+      throw new Error(directData.message || "Direct form submission could not be completed.");
     } catch (error) {
       setDeliveryMode("email");
       setSubmissionMessage(

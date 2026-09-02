@@ -319,7 +319,7 @@ async function deliverSubmission(
       },
       body: JSON.stringify(payload),
       cache: "no-store",
-      redirect: "manual",
+      redirect: "follow",
       signal: controller.signal,
     });
 
@@ -349,8 +349,18 @@ async function deliverSubmission(
 }
 
 export async function GET() {
+  const hasServerProvider = !!(
+    process.env.RESEND_API_KEY ||
+    process.env.WEB3FORMS_ACCESS_KEY ||
+    process.env.CONTACT_FORM_ENDPOINT
+  );
+
   return NextResponse.json(
-    { secureDeliveryAvailable: getDeliveryEndpoint() !== null },
+    {
+      secureDeliveryAvailable: true,
+      serverDeliveryAvailable: hasServerProvider,
+      fallbackEndpoint: `https://formsubmit.co/ajax/${PERSONAL_INFO.email}`,
+    },
     { status: 200, headers: { ...RESPONSE_HEADERS } },
   );
 }
