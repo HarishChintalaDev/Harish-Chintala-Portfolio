@@ -216,7 +216,11 @@ function getDeliveryEndpoint(): URL | null {
   }
 }
 
-async function deliverSubmission(endpoint: URL, submission: ContactSubmission): Promise<boolean> {
+async function deliverSubmission(
+  endpoint: URL,
+  submission: ContactSubmission,
+  requestOrigin?: string,
+): Promise<boolean> {
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), DELIVERY_TIMEOUT_MS);
 
@@ -224,10 +228,76 @@ async function deliverSubmission(endpoint: URL, submission: ContactSubmission): 
     const formattedName = submission.name.trim().replace(/\b\w/g, (c) => c.toUpperCase());
     const formattedCompany = submission.company.trim();
 
+    // 1. Direct delivery via Resend (Recommended for Vercel production)
+    if (process.env.RESEND_API_KEY) {
+      try {
+        const resendRes = await fetch("https://api.resend.com/emails", {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${process.env.RESEND_API_KEY.trim()}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            from:
+              process.env.RESEND_FROM_EMAIL?.trim() ||
+              "Portfolio Contact <onboarding@resend.dev>",
+            to: [PERSONAL_INFO.email],
+            reply_to: submission.email,
+            subject: `📩 New Resume Download / Inquiry: ${formattedName}${formattedCompany ? ` (${formattedCompany})` : ""}`,
+            html: `
+              <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; rounded: 8px;">
+                <h2 style="color: #0284c7; margin-bottom: 16px;">New Resume Gate & Contact Submission</h2>
+                <p><strong>Name:</strong> ${submission.name}</p>
+                <p><strong>Email:</strong> <a href="mailto:${submission.email}">${submission.email}</a></p>
+                <p><strong>Company:</strong> ${submission.company || "N/A"}</p>
+                <p><strong>Message:</strong></p>
+                <div style="background: #f8fafc; padding: 14px; border-left: 4px solid #0284c7; margin-top: 8px; white-space: pre-wrap;">${submission.message}</div>
+              </div>
+            `,
+          }),
+          signal: controller.signal,
+        });
+
+        if (resendRes.ok) return true;
+        const resendData = await resendRes.text();
+        console.error("Resend delivery failed:", resendData);
+      } catch (resendErr) {
+        console.error("Resend API error:", resendErr);
+      }
+    }
+
+    // 2. Direct delivery via Web3Forms (if access key provided)
+    if (process.env.WEB3FORMS_ACCESS_KEY) {
+      try {
+        const web3Res = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            access_key: process.env.WEB3FORMS_ACCESS_KEY.trim(),
+            name: submission.name,
+            email: submission.email,
+            company: submission.company || "N/A",
+            message: submission.message,
+            subject: `📩 New Portfolio Inquiry from ${formattedName}${formattedCompany ? ` (${formattedCompany})` : ""}`,
+            from_name: "Portfolio Notification",
+          }),
+          signal: controller.signal,
+        });
+
+        if (web3Res.ok) return true;
+      } catch (web3Err) {
+        console.error("Web3Forms API error:", web3Err);
+      }
+    }
+
+    // 3. Fallback delivery to configured endpoint (FormSubmit / custom)
     const payload = {
       "Visitor Name": submission.name,
       "Email Address": submission.email,
-      "Company / Organization": submission.company,
+      "Company / Organization": submission.company || "N/A",
       "Message": submission.message,
       _subject: `📩 New Portfolio Inquiry from ${formattedName}${formattedCompany ? ` (${formattedCompany})` : ""}`,
       _replyto: submission.email,
@@ -235,13 +305,17 @@ async function deliverSubmission(endpoint: URL, submission: ContactSubmission): 
       _captcha: "false",
     };
 
-    const response = await fetch(endpoint, {
+    // Use actual incoming request origin (or fallback to CANONICAL_URL)
+    const activeOrigin = (requestOrigin || CANONICAL_URL).replace(/\/+$/, "");
+
+    const response = await fetch(endpoint.toString(), {
       method: "POST",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Portfolio-ContactForm/1.0",
-        Referer: CANONICAL_URL,
+        Origin: activeOrigin,
+        Referer: `${activeOrigin}/`,
       },
       body: JSON.stringify(payload),
       cache: "no-store",
@@ -249,15 +323,20 @@ async function deliverSubmission(endpoint: URL, submission: ContactSubmission): 
       signal: controller.signal,
     });
 
-    if (!response.ok) return false;
+    if (!response.ok) {
+      const errorText = await response.text().catch(() => "");
+      console.error(`Endpoint ${endpoint} returned status ${response.status}: ${errorText}`);
+      return false;
+    }
 
     try {
-      const data = (await response.json()) as { success?: boolean | string };
+      const data = (await response.json()) as { success?: boolean | string; message?: string };
       if (data && (data.success === false || data.success === "false")) {
+        console.error("Endpoint returned false status:", data.message || data);
         return false;
       }
     } catch {
-      // If response is non-JSON 200 OK, treat as success
+      // Non-JSON 200 OK treated as success
     }
 
     return true;
@@ -289,7 +368,8 @@ export async function POST(request: Request) {
   }
 
   const endpoint = getDeliveryEndpoint();
-  if (!endpoint || !(await deliverSubmission(endpoint, submission))) {
+  const requestOrigin = request.headers.get("origin") || request.headers.get("referer") || undefined;
+  if (!endpoint || !(await deliverSubmission(endpoint, submission, requestOrigin))) {
     return jsonResponse(
       { error: "Contact form is temporarily unavailable. Please use the direct email link." },
       503,
