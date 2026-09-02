@@ -171,6 +171,48 @@ export default function ContactSection() {
       };
 
       if (!response.ok) {
+        // Direct browser delivery fallback if Vercel serverless proxy is blocked or unavailable
+        try {
+          const formattedName = formData.name.trim().replace(/\b\w/g, (c) => c.toUpperCase());
+          const formattedCompany = formData.company.trim();
+          const directRes = await fetch(`https://formsubmit.co/ajax/${PERSONAL_INFO.email}`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+            },
+            body: JSON.stringify({
+              "Visitor Name": formData.name,
+              "Email Address": formData.email,
+              "Company / Organization": formData.company || "N/A",
+              "Message": formData.message,
+              _subject: `📩 New Portfolio Inquiry from ${formattedName}${formattedCompany ? ` (${formattedCompany})` : ""}`,
+              _replyto: formData.email,
+              _template: "table",
+              _captcha: "false",
+            }),
+          });
+          const directData = (await directRes.json().catch(() => ({}))) as {
+            success?: boolean | string;
+          };
+          if (
+            directRes.ok &&
+            directData &&
+            directData.success !== false &&
+            directData.success !== "false"
+          ) {
+            const name = formData.name.trim();
+            setSubmittedName(name);
+            setSubmissionMessage(`Thank you, ${name}! Your message was delivered successfully.`);
+            setSubmissionStatus("success");
+            setFormData({ name: "", email: "", company: "", message: "" });
+            setTouchedEmail(false);
+            return;
+          }
+        } catch {
+          // Proceed to error handling below
+        }
+
         throw new Error(payload.error || "The portfolio API could not acknowledge the submission.");
       }
 
