@@ -1,0 +1,31 @@
+{
+  "name": "Harish Chintala",
+  "title": "Senior SDET / QA Automation Engineer",
+  "badge": "AVAILABLE FOR SR. SDET / AI QA LEAD",
+  "heroRoles": [
+    "Software Development Engineer",
+    "Senior SDET & Automation Architect",
+    "AI/ML Engineer"
+  ],
+  "location": "Bengaluru, Karnataka, India",
+  "email": "harishchintaladev@gmail.com",
+  "phone": "+91 7893611993",
+  "github": "https://github.com/HarishChintalaDev",
+  "linkedin": "https://www.linkedin.com/in/harishchintaladev/",
+  "availability": "Senior SDE · SDET Lead · AI/ML Engineer",
+  "coreFocus": "Software Development · Automation Engineering · AI/ML Engineering",
+  "summary": "Senior SDET Engineer with 5 years of experience in automation testing for web, mobile, and device platforms. Skilled in building scalable frameworks, API/UI automation and CI/CD integration. Focused on delivering performance-optimized solutions using modern and AI-assisted testing approaches, with an additional 3 years of experience in mechanical engineering quality inspection and testing.",
+  "story": [
+    "Started with a strong foundation in Mechanical Engineering Quality Inspection (APSRTC engine, unit & electrical systems inspection tracking), transitioning seamlessly into software test automation and enterprise SDET engineering.",
+    "Engineered scalable Playwright, Cypress, Appium, Python, and TypeScript automation frameworks across Delta Air Lines booking platforms, INTO Global payments systems, and Amazon Prime Video streaming devices.",
+    "Pioneered AI-driven document automation using Azure AI Document Intelligence (OCR) and OpenAI APIs to extract structured data from uploaded documents, and developed Fire TV RTU device performance tools reducing testing times by up to 97%."
+  ],
+  "techBadges": [
+    "Playwright / Cypress",
+    "Appium / Selenium",
+    "Python / TypeScript / Java",
+    "Azure AI OCR & OpenAI APIs",
+    "Fire TV ADB / Android Performance",
+    "Jenkins / GitHub Actions / Azure DevOps"
+  ]
+}

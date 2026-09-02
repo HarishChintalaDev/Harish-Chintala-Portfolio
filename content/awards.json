@@ -1,0 +1,37 @@
+[
+  {
+    "id": "award-1",
+    "title": "Amazon Appstore Bug Bash Winner",
+    "organization": "Amazon",
+    "year": "2022",
+    "description": "Found and reported critical bugs during Amazon Appstore engineering bug bash."
+  },
+  {
+    "id": "award-2",
+    "title": "Amazon Appstore Innovator",
+    "organization": "Amazon",
+    "year": "2023",
+    "description": "Awarded for process optimization in Fire TV device performance testing."
+  },
+  {
+    "id": "award-3",
+    "title": "Amazon Appstore ACE",
+    "organization": "Amazon",
+    "year": "2024",
+    "description": "Recognized for outstanding contributions to Fire TV device test automation."
+  },
+  {
+    "id": "award-4",
+    "title": "Appstore Star Performer",
+    "organization": "Amazon",
+    "year": "2022 - 2024",
+    "description": "Consistent high performance in device automation workflows."
+  },
+  {
+    "id": "award-5",
+    "title": "INTO Shining Star",
+    "organization": "INTO Global",
+    "year": "2024",
+    "description": "Developed Application Form automation framework that reduced manual processing time by 97%."
+  }
+]

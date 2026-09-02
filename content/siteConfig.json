@@ -1,0 +1,113 @@
+{
+  "siteTitle": "Harish Chintala Portfolio",
+  "siteDescription": "Official portfolio of Harish Chintala, Senior SDET & QA Automation Engineer with 5 years of experience across Delta Air Lines, INTO Global, and Amazon.",
+  "canonicalUrl": "https://harishchintala.dev",
+  "navLinks": [
+    {
+      "name": "Home",
+      "href": "#home",
+      "id": "home"
+    },
+    {
+      "name": "Experience",
+      "href": "#experience",
+      "id": "experience"
+    },
+    {
+      "name": "Projects",
+      "href": "#projects",
+      "id": "projects"
+    },
+    {
+      "name": "Skills",
+      "href": "#skills",
+      "id": "skills"
+    },
+    {
+      "name": "Awards",
+      "href": "#awards",
+      "id": "awards"
+    },
+    {
+      "name": "Certifications",
+      "href": "#certifications",
+      "id": "certifications"
+    },
+    {
+      "name": "Education",
+      "href": "#education",
+      "id": "education"
+    },
+    {
+      "name": "Contact",
+      "href": "#contact",
+      "id": "contact"
+    }
+  ],
+  "commandActions": [
+    {
+      "id": "cmd-home",
+      "title": "Go to Home",
+      "subtitle": "Scroll to top hero identity section",
+      "iconName": "User",
+      "actionType": "scroll",
+      "target": "home"
+    },
+    {
+      "id": "cmd-exp",
+      "title": "View Career Experience",
+      "subtitle": "Timeline at Delta, INTO Global & Amazon",
+      "iconName": "Briefcase",
+      "actionType": "scroll",
+      "target": "experience"
+    },
+    {
+      "id": "cmd-proj",
+      "title": "Explore Case Studies",
+      "subtitle": "Playwright, AI OCR & Fire TV frameworks",
+      "iconName": "Code",
+      "actionType": "scroll",
+      "target": "projects"
+    },
+    {
+      "id": "cmd-skills",
+      "title": "Technical Expertise",
+      "subtitle": "Tools, languages & cloud automation",
+      "iconName": "Code",
+      "actionType": "scroll",
+      "target": "skills"
+    },
+    {
+      "id": "cmd-awards",
+      "title": "Honors & Achievements",
+      "subtitle": "Amazon & INTO Global awards",
+      "iconName": "Trophy",
+      "actionType": "scroll",
+      "target": "awards"
+    },
+    {
+      "id": "cmd-resume",
+      "title": "Download Resume PDF",
+      "subtitle": "Navigate to Share Your Details to unlock official PDF resume",
+      "iconName": "FileText",
+      "actionType": "scroll",
+      "target": "send-message"
+    },
+    {
+      "id": "cmd-email",
+      "title": "Send Email",
+      "subtitle": "Direct communication via Gmail",
+      "iconName": "Mail",
+      "actionType": "email",
+      "target": "harishchintaladev@gmail.com"
+    },
+    {
+      "id": "cmd-phone",
+      "title": "Call / WhatsApp",
+      "subtitle": "Direct phone reach",
+      "iconName": "Phone",
+      "actionType": "phone",
+      "target": "+917893611993"
+    }
+  ]
+}

@@ -1,0 +1,97 @@
+[
+  {
+    "id": "delta",
+    "company": "Delta Airlines Global Technology Hub",
+    "role": "Senior Software Development Engineer in Test (Sr. SDET)",
+    "period": "Jun 2026 - Current",
+    "location": "Bengaluru, Karnataka",
+    "current": true,
+    "summary": "Leading end-to-end automation and Cypress to Playwright framework migration for Delta Air Lines booking platform (delta.com).",
+    "achievements": [
+      "Worked on the Delta Air Lines booking platform (delta.com), contributed to key customer-facing functionalities including flight ticket booking, seat selection, checkout, booking modification, and purchase flows.",
+      "Designed and executed functional, regression, and end-to-end test scenarios for high-quality releases across critical booking workflows.",
+      "Worked on automation framework migration from Cypress to Playwright, converting and enhancing existing test scripts for improved reliability, maintainability, and execution performance."
+    ],
+    "techStack": [
+      "Playwright",
+      "Cypress",
+      "TypeScript",
+      "JavaScript",
+      "API Automation",
+      "CI/CD Pipelines"
+    ]
+  },
+  {
+    "id": "into",
+    "company": "INTO Global  (INTO University Partnerships)",
+    "role": "Software Development Engineer in Test (SDET)",
+    "period": "Sep 2024 - Jun 2026",
+    "location": "Bengaluru, Karnataka",
+    "current": false,
+    "summary": "Engineered automated test frameworks for INTO Payments systems and AI-driven document intelligence OCR processing.",
+    "achievements": [
+      "Designed and implemented scalable automation frameworks for Declaration Form and Application Fee processes in INTO Payments system, achieved 100% test automation, improved workflow efficiency, and integrated with CI/CD pipelines.",
+      "Built a reusable automation framework to automate Apply Form creation, which reduced processing time by 97% (from 30 minutes to 1 minute per application).",
+      "Implemented automated test reporting, reduced manual effort, and delivered daily interactive reports to Teams.",
+      "Worked on AI-driven document automation using Azure AI Document Intelligence (OCR) and OpenAI APIs to extract structured data from uploaded documents and auto-populate Apply Form fields. Validated end-to-end UI/API workflows by testing more than 1000 documents across multiple formats, improving data accuracy and processing efficiency.",
+      "Optimized payment reliability for INTO Pay and Worldline systems by resolving transaction issues and ensuring seamless system integration."
+    ],
+    "techStack": [
+      "Python",
+      "Azure AI OCR",
+      "OpenAI APIs",
+      "Appium",
+      "Playwright",
+      "REST Assured",
+      "Postman",
+      "CI/CD Pipelines"
+    ]
+  },
+  {
+    "id": "amazon",
+    "company": "Amazon",
+    "role": "Quality Assurance Technical Engineer",
+    "period": "May 2022 - Aug 2024",
+    "location": "Bengaluru, Karnataka",
+    "current": false,
+    "careerProgression": "Software Quality Associate → Quality Assurance Technical Engineer",
+    "summary": "Developed Fire TV RTU device testing tools, SIM ticket bots, and Android ADB performance automation frameworks.",
+    "achievements": [
+      "Developed an RTU device testing tool for Fire TV and Amazon devices, reduced end-to-end manual testing time by 80% (from 50 minutes to 10 minutes) through automated app installation, login, performance validation, and reporting.",
+      "Built an automated SIM Ticket Bot, reduced ticket resolution time from 30 minutes to 1 minute per ticket with 99% accuracy.",
+      "Performed Android device performance testing by measuring Cool Launch and Warm Launch startup latency, validating RTU (Ready-to-Use) metrics after initial screen load, and conducting memory utilization and stability testing across repeated launch cycles.",
+      "Designed and implemented a scalable Android automation framework using Appium, Python, and Selenium WebDriver, leveraging ADB platform tools for device management, log capturing, and device-level validation across multiple Android devices.",
+      "Built an automated Test Evidence Capturing Tool, improved QA productivity by 200% (from 8 to 16 apps per day), and reduced manual effort to achieve complete end-to-end test coverage.",
+      "Designed and implemented a self-hosted Amazon Appstore Cloud Storage cleanup tool, reduced app deletion time by 83% (from 60 minutes to 10 minutes) and improved device performance for subsequent testing."
+    ],
+    "techStack": [
+      "Python",
+      "ADB",
+      "Appium",
+      "Selenium WebDriver",
+      "Fire TV API",
+      "Jenkins",
+      "Java",
+      "Android SDK"
+    ]
+  },
+  {
+    "id": "apsrtc",
+    "company": "APSRTC",
+    "role": "Mechanical Engineer Quality Inspection",
+    "period": "Oct 2017 - Mar 2022",
+    "location": "Vizianagaram, Andhra Pradesh",
+    "current": false,
+    "summary": "Conducted quality inspections in engine, unit, and electrical sections with digital tracking systems.",
+    "achievements": [
+      "Performed quality inspections in engine, unit, and electrical sections to maintain performance and safety standards. Identified defects and supported root cause analysis to improve equipment reliability.",
+      "Worked with digital tools and web-based automation systems for inspection tracking, reporting, and quality monitoring."
+    ],
+    "techStack": [
+      "Quality Inspection",
+      "Root Cause Analysis",
+      "Web Inspection Tracking",
+      "Equipment Safety"
+    ]
+  }
+]

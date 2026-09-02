@@ -1,0 +1,67 @@
+[
+  {
+    "id": "cert-5",
+    "title": "Claude Code in Action",
+    "issuer": "Anthropic",
+    "fileUrl": "/certifications/claude-code.png",
+    "fileType": "image",
+    "issueDate": "Feb 2026",
+    "skills": [
+      "Claude Code",
+      "AI Agentic Coding",
+      "Anthropic Claude"
+    ]
+  },
+  {
+    "id": "cert-1",
+    "title": "Generative AI Foundations",
+    "issuer": "UpGrad & Microsoft",
+    "fileUrl": "/certifications/generative-ai.jpg",
+    "fileType": "image",
+    "issueDate": "Jul 2025",
+    "skills": [
+      "Generative AI",
+      "LLM Prompting",
+      "AI Assisted Testing"
+    ]
+  },
+  {
+    "id": "cert-3",
+    "title": "Fundamentals of AI and Generative AI",
+    "issuer": "LearnTube by CareerNinja",
+    "fileUrl": "/certifications/ai-fundamentals.jpg",
+    "fileType": "image",
+    "issueDate": "Oct 2024",
+    "skills": [
+      "AI Fundamentals",
+      "Generative AI",
+      "AI Quality Assurance"
+    ]
+  },
+  {
+    "id": "cert-4",
+    "title": "MLOps Essentials: Model Development and Integration",
+    "issuer": "LinkedIn Learning",
+    "fileUrl": "/certifications/mlops-essentials.jpg",
+    "fileType": "image",
+    "issueDate": "Nov 2025",
+    "skills": [
+      "MLOps Pipelines",
+      "Model Deployment",
+      "Continuous Integration"
+    ]
+  },
+  {
+    "id": "cert-2",
+    "title": "Azure Machine Learning for Cloud Data Science",
+    "issuer": "LearnTube & Microsoft Azure",
+    "fileUrl": "/certifications/azure-ml.jpg",
+    "fileType": "image",
+    "issueDate": "Oct 2024",
+    "skills": [
+      "Azure ML",
+      "Data Pipelines",
+      "Cloud Analytics"
+    ]
+  }
+]

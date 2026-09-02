@@ -1,0 +1,80 @@
+[
+  {
+    "category": "Frontend Development & Management",
+    "skills": [
+      { "name": "React" },
+      { "name": "Angular" },
+      { "name": "Next.js" },
+      { "name": "HTML5 & CSS3" },
+      { "name": "Jira & Confluence" },
+      { "name": "Agile / Scrum Methodologies" }
+    ]
+  },
+  {
+    "category": "CI/CD & DevOps",
+    "skills": [
+      { "name": "Jenkins" },
+      { "name": "Git & GitHub" },
+      { "name": "Docker" },
+      { "name": "CI/CD Pipelines" },
+      { "name": "Azure DevOps" }
+    ]
+  },
+  {
+    "category": "AI / ML & OCR Frameworks",
+    "skills": [
+      { "name": "Azure AI Document Intelligence (OCR)" },
+      { "name": "OpenAI APIs Integration" },
+      { "name": "OpenCV Image Preprocessing" },
+      { "name": "TensorFlow" },
+      { "name": "PyTorch" }
+    ]
+  },
+  {
+    "category": "Automation Testing",
+    "skills": [
+      { "name": "Playwright" },
+      { "name": "Appium (Mobile & Fire TV)" },
+      { "name": "Selenium WebDriver" },
+      { "name": "Apache JMeter" },
+      { "name": "Cypress" },
+      { "name": "TestNG" },
+      { "name": "Cucumber (BDD)" }
+    ]
+  },
+  {
+    "category": "API Testing",
+    "skills": [
+      { "name": "Rest Assured" },
+      { "name": "Postman" },
+      { "name": "Bruno" }
+    ]
+  },
+  {
+    "category": "Programming Languages",
+    "skills": [
+      { "name": "Python" },
+      { "name": "JavaScript" },
+      { "name": "TypeScript" },
+      { "name": "Java" },
+      { "name": "SQL" }
+    ]
+  },
+  {
+    "category": "Cloud Platforms",
+    "skills": [
+      { "name": "Microsoft Azure" },
+      { "name": "AWS (Amazon Web Services)" },
+      { "name": "Salesforce" }
+    ]
+  },
+  {
+    "category": "Operating Systems",
+    "skills": [
+      { "name": "Windows" },
+      { "name": "Linux (Ubuntu)" },
+      { "name": "macOS" },
+      { "name": "Kali Linux" }
+    ]
+  }
+]

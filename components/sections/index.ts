@@ -1,0 +1,10 @@
+export { default as HeroSection } from "./HeroSection";
+export { default as ExperienceSection } from "./ExperienceSection";
+export { default as ProjectsSection } from "./ProjectsSection";
+export { default as ProjectDetailsModal } from "./ProjectDetailsModal";
+export { default as SkillsSection } from "./SkillsSection";
+export { default as AwardsSection } from "./AwardsSection";
+export { default as CertificationsSection } from "./CertificationsSection";
+export { default as EducationSection } from "./EducationSection";
+export { default as ContactSection } from "./ContactSection";
+export { default as ResumeModal } from "./ResumeModal";

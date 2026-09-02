@@ -1,0 +1,113 @@
+{
+  "ai-ocr": {
+    "title": "Azure AI Document Intelligence & OpenAI Form Automation",
+    "subtitle": "INTO Global AI Document Automation & Validation Engine",
+    "metrics": "1,000+ Verified Documents • 97% Application Speedup",
+    "steps": [
+      {
+        "num": "01",
+        "name": "Document Ingestion",
+        "desc": "Ingest declaration form & transcripts via API pipeline",
+        "tech": "Azure AI OCR"
+      },
+      {
+        "num": "02",
+        "name": "Text Extraction",
+        "desc": "Extract structured fields from PDFs and multi-format files",
+        "tech": "Azure Document Intelligence"
+      },
+      {
+        "num": "03",
+        "name": "OpenAI Validation",
+        "desc": "Parse unstructured text schemas using OpenAI GPT APIs",
+        "tech": "OpenAI API"
+      },
+      {
+        "num": "04",
+        "name": "Auto-Populate",
+        "desc": "Auto-populate Apply Form fields and validate UI/API flows",
+        "tech": "Playwright / Python"
+      },
+      {
+        "num": "05",
+        "name": "Teams Report",
+        "desc": "Deliver daily interactive execution reports to MS Teams",
+        "tech": "MS Teams Webhook"
+      }
+    ]
+  },
+  "delta-kiosk": {
+    "title": "Delta Air Lines Cypress to Playwright Migration Grid",
+    "subtitle": "delta.com Customer Booking & Seat Selection Automation",
+    "metrics": "100% Automated Coverage • Seamless delta.com Booking Workflows",
+    "steps": [
+      {
+        "num": "01",
+        "name": "Script Analysis",
+        "desc": "Audit legacy Cypress test scripts for delta.com flows",
+        "tech": "Cypress JS"
+      },
+      {
+        "num": "02",
+        "name": "Playwright Conversion",
+        "desc": "Convert scripts to Playwright TypeScript Page Object Models",
+        "tech": "Playwright TS"
+      },
+      {
+        "num": "03",
+        "name": "Booking Flow Test",
+        "desc": "Execute flight ticket booking, seat selection & checkout scenarios",
+        "tech": "Playwright Grid"
+      },
+      {
+        "num": "04",
+        "name": "API Validation",
+        "desc": "Validate booking modification and purchase confirmation endpoints",
+        "tech": "REST APIs"
+      },
+      {
+        "num": "05",
+        "name": "CI Release Signoff",
+        "desc": "Trigger Azure DevOps pipeline assertions on release builds",
+        "tech": "Azure DevOps"
+      }
+    ]
+  },
+  "firetv-adb": {
+    "title": "Amazon Fire TV & Android ADB Performance Automation",
+    "subtitle": "RTU Device Testing, Startup Latency & SIM Ticket Bot",
+    "metrics": "80% Manual Time Reduction • 99% SIM Bot Accuracy",
+    "steps": [
+      {
+        "num": "01",
+        "name": "App Installation",
+        "desc": "Automate app deployment to Fire TV & Android device farm",
+        "tech": "ADB Tools"
+      },
+      {
+        "num": "02",
+        "name": "Launch Latency",
+        "desc": "Measure Cool Launch and Warm Launch startup latency",
+        "tech": "Python ADB"
+      },
+      {
+        "num": "03",
+        "name": "SIM Ticket Bot",
+        "desc": "Auto-resolve SIM tickets in 1 minute with 99% accuracy",
+        "tech": "Python Automation"
+      },
+      {
+        "num": "04",
+        "name": "Evidence Capture",
+        "desc": "Automate test screenshot and video evidence capturing",
+        "tech": "Capture Tool"
+      },
+      {
+        "num": "05",
+        "name": "Cloud Storage Cleanup",
+        "desc": "Execute self-hosted Amazon Appstore cleanup in 10 minutes",
+        "tech": "Jenkins CI"
+      }
+    ]
+  }
+}

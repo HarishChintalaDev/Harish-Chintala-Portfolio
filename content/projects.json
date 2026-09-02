@@ -1,0 +1,152 @@
+[
+  {
+    "id": "playwright-self-healing-framework",
+    "title": "Playwright Self-Healing Test Automation Framework",
+    "subtitle": "Custom Dynamic Selector Healing & Automated Test Resilience",
+    "category": "Automation",
+    "company": "INTO Global",
+    "period": "2024 - 2026",
+    "problem": "Frequent web application UI updates and dynamic DOM elements at INTO Global caused brittle locators to break, consuming significant QA engineering bandwidth to manually debug and update selectors.",
+    "solution": "Engineered a custom Playwright self-healing test automation framework from scratch with intelligent DOM inspection and fallback selector strategies. Automatically resolves broken selectors at runtime and cuts locator maintenance time by 80%.",
+    "architecture": "Playwright TS Suite -> DOM Selector Interceptor -> Dynamic Self-Healing Engine -> Auto-Resolved Selector -> Test Report",
+    "metrics": [
+      {
+        "label": "Locator Repair Time",
+        "value": "80% Time Reduction",
+        "displayValue": "80% · Locators"
+      },
+      {
+        "label": "Healing Success Rate",
+        "value": "95% Auto-Healed",
+        "displayValue": "95% · Auto-Healed"
+      },
+      {
+        "label": "Suite Reliability",
+        "value": "100% Zero Flakiness",
+        "displayValue": "100% · Reliable"
+      }
+    ],
+    "techStack": [
+      "Playwright",
+      "TypeScript",
+      "Self-Healing Engine",
+      "Node.js",
+      "Page Object Model",
+      "REST APIs",
+      "Azure DevOps"
+    ],
+    "githubUrl": "https://github.com/HarishChintalaDev/Playwright-Self-Healing-Framework"
+  },
+  {
+    "id": "amazon-firetv-rtu-tool",
+    "title": "Fire TV RTU Testing Tool & Android ADB Performance Suite",
+    "subtitle": "Automated Installation, Startup Latency & SIM Ticket Bot",
+    "category": "Performance",
+    "company": "Amazon",
+    "period": "2022 - 2024",
+    "problem": "Manual RTU (Ready-to-Use) testing on Fire TV devices took 50 minutes per cycle, while SIM ticket resolution required 30 minutes per manual ticket.",
+    "solution": "Developed an RTU device testing tool for Fire TV using Python ADB, reducing manual testing time by 80% (from 50m to 10m). Built an automated SIM Ticket Bot reducing resolution time to 1 minute per ticket with 99% accuracy.",
+    "architecture": "Jenkins Controller -> Python ADB Bridge -> Fire TV / Android Device Farm -> Automated Latency Logcat Metrics",
+    "metrics": [
+      {
+        "label": "RTU Testing Speedup",
+        "value": "80% (50m to 10m)",
+        "displayValue": "80% · 50m→10m"
+      },
+      {
+        "label": "Ticket Bot Accuracy",
+        "value": "99% (30m to 1m)",
+        "displayValue": "99% · 30m→1m"
+      },
+      {
+        "label": "QA Productivity",
+        "value": "+200% (8 to 16 apps/day)",
+        "displayValue": "+200% · 8→16/day"
+      }
+    ],
+    "techStack": [
+      "Python",
+      "ADB",
+      "Appium",
+      "Selenium WebDriver",
+      "Android SDK",
+      "Jenkins",
+      "Fire TV API"
+    ],
+    "githubUrl": "https://github.com/HarishChintalaDev/Fire-TV-Device-Testing-Tool"
+  },
+  {
+    "id": "automated-test-evidence-capture-tool",
+    "title": "Automated Test Evidence Capture Tool",
+    "subtitle": "Automated QA Screenshot, Video & Execution Log Recording Engine",
+    "category": "DevOps",
+    "company": "Amazon",
+    "period": "2022 - 2024",
+    "problem": "Manual test evidence collection (capturing screenshots, recording logs, and organizing test artifacts per app) at Amazon Appstore limited QA testing throughput to 8 apps per day and created verification delays.",
+    "solution": "Engineered an automated Test Evidence Capturing Tool using Python ADB and Java to capture high-resolution screenshots, video recordings, and Logcat traces automatically during execution, doubling QA app throughput to 16 apps per day.",
+    "architecture": "Jenkins Pipeline -> ADB Video/Logcat Engine -> Automated Screenshot Sampler -> Evidence Artifact Packager -> QA Report",
+    "metrics": [
+      {
+        "label": "QA App Throughput",
+        "value": "16 Apps / Day",
+        "displayValue": "16 apps/day"
+      },
+      {
+        "label": "Evidence Capture Speed",
+        "value": "2x Speedup",
+        "displayValue": "2x · Speedup"
+      },
+      {
+        "label": "Evidence Coverage",
+        "value": "100% E2E",
+        "displayValue": "100% · E2E"
+      }
+    ],
+    "techStack": [
+      "Python",
+      "ADB",
+      "Jenkins",
+      "Java",
+      "Android SDK",
+      "Docker"
+    ],
+    "githubUrl": "https://github.com/HarishChintalaDev/Test-Evidence-Capture-Tool"
+  },
+  {
+    "id": "youtube-shorts-gesture-control",
+    "title": "YouTube Shorts Gesture Control Engine",
+    "subtitle": "Real-Time OpenCV & MediaPipe Hand Tracking Automation",
+    "category": "Others",
+    "company": "Personal Engineering Project",
+    "period": "2024 - 2025",
+    "problem": "Navigating YouTube Shorts hands-free while cooking, exercising, or multitasking is inconvenient with physical mouse and keyboard inputs.",
+    "solution": "Engineered a real-time computer vision gesture control engine using Python, OpenCV, and MediaPipe to detect hand gestures via webcam and trigger automated play/pause, scroll, and volume controls for YouTube Shorts.",
+    "architecture": "Webcam Stream -> MediaPipe Landmark Detection -> Gesture Classifier -> PyAutoGUI Control Engine -> YouTube Shorts",
+    "metrics": [
+      {
+        "label": "Gesture Latency",
+        "value": "< 50ms Real-Time",
+        "displayValue": "<50ms · Real-time"
+      },
+      {
+        "label": "Control Accuracy",
+        "value": "98% Precision",
+        "displayValue": "98% · Accuracy"
+      },
+      {
+        "label": "Gestures Supported",
+        "value": "5 Hand Controls",
+        "displayValue": "5 Controls"
+      }
+    ],
+    "techStack": [
+      "Python",
+      "OpenCV",
+      "MediaPipe",
+      "PyAutoGUI",
+      "Computer Vision",
+      "Deep Learning"
+    ],
+    "githubUrl": "https://github.com/HarishChintalaDev/You-Tube-shorts-Gesture-Control"
+  }
+]

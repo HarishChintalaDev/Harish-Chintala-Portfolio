@@ -1,0 +1,51 @@
+{
+  "hourlyLaborRateUSD": 85,
+  "defaultMonthlyApps": 500,
+  "defaultWeeklyDeviceBuilds": 40,
+  "applyFormSecondsManual": 1800,
+  "applyFormSecondsAutomated": 60,
+  "deviceBuildHoursManual": 50,
+  "deviceBuildHoursAutomated": 10,
+  "sliderRanges": {
+    "monthlyApps": {
+      "min": 50,
+      "max": 2000,
+      "step": 50
+    },
+    "weeklyDeviceBuilds": {
+      "min": 5,
+      "max": 150,
+      "step": 5
+    }
+  },
+  "highlights": [
+    {
+      "value": "97%",
+      "title": "Form Processing Speedup",
+      "description": "Reduced Apply Form creation time from 30 minutes to 1 minute per application at INTO Global.",
+      "iconName": "Zap",
+      "accentColor": "#38BDF8"
+    },
+    {
+      "value": "80%",
+      "title": "RTU Device Testing Speedup",
+      "description": "Reduced Fire TV end-to-end testing time from 50 minutes to 10 minutes at Amazon.",
+      "iconName": "Clock",
+      "accentColor": "#818CF8"
+    },
+    {
+      "value": "99%",
+      "title": "SIM Bot Resolution Accuracy",
+      "description": "Automated SIM ticket resolution reducing time from 30 minutes to 1 minute per ticket.",
+      "iconName": "Bot",
+      "accentColor": "#10B981"
+    },
+    {
+      "value": "+200%",
+      "title": "QA Productivity Boost",
+      "description": "Increased QA testing throughput from 8 to 16 apps per day using automated evidence capture.",
+      "iconName": "Layers",
+      "accentColor": "#F59E0B"
+    }
+  ]
+}
