@@ -68,15 +68,24 @@ test("desktop interactive flows remain functional", async ({ page }, testInfo) =
   await page.keyboard.press("Escape");
   await expect(page.getByRole("dialog")).toBeHidden();
 
-  await page.getByRole("button", { name: "Unlocks Resume" }).click();
+  await page.getByRole("link", { name: "View Resume" }).click();
   await expect(page.getByRole("dialog", { name: /Resume Download/ })).toBeVisible();
   await page.getByRole("button", { name: "Close resume download modal" }).click();
+  await expect(page.getByRole("dialog", { name: /Resume Download/ })).toBeHidden();
+
+  await page.route("**/formsubmit.co/**", async (route) => {
+    await route.fulfill({
+      status: 200,
+      contentType: "application/json",
+      body: JSON.stringify({ success: "true", message: "Thank you!" }),
+    });
+  });
 
   await page.getByLabel("Your Name").fill("Portfolio Tester");
   await page.getByLabel("Your Email").fill("tester@example.com");
   await page.getByLabel("Your Message").fill("Automated portfolio smoke test");
   await page.getByRole("button", { name: "Send Email" }).click();
-  await expect(page.getByRole("dialog", { name: /Resume Download|Thank You/ })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /Thank You/ })).toBeVisible();
 });
 
 test("mobile navigation opens, closes, and fits the viewport", async ({ page }, testInfo) => {

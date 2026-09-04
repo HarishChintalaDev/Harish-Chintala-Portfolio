@@ -10,18 +10,14 @@ import {
   Send,
   CheckCircle2,
   Copy,
-  Download,
   RefreshCw,
   User,
   Building,
   MessageSquare,
   Sparkles,
-  Lock,
-  Unlock,
   Linkedin,
   Github,
   ArrowUpRight,
-  ExternalLink,
   Check,
 } from "lucide-react";
 import { PERSONAL_INFO } from "@/data";
@@ -35,7 +31,17 @@ const ResumeModal = dynamic(() => import("./ResumeModal"), {
 type SubmissionStatus = "idle" | "submitting" | "success" | "error" | "fallback";
 type DeliveryMode = "server" | "direct" | "email";
 
-export default function ContactSection() {
+interface ContactSectionProps {
+  isResumeModalOpen?: boolean;
+  onOpenResumeModal?: () => void;
+  onCloseResumeModal?: () => void;
+}
+
+export default function ContactSection({
+  isResumeModalOpen: externalIsOpen,
+  onOpenResumeModal,
+  onCloseResumeModal,
+}: ContactSectionProps = {}) {
   const [formData, setFormData] = useState({ name: "", email: "", company: "", message: "" });
   const [copiedField, setCopiedField] = useState<string | null>(null);
   const [submissionStatus, setSubmissionStatus] = useState<SubmissionStatus>("idle");
@@ -43,7 +49,18 @@ export default function ContactSection() {
   const [submittedName, setSubmittedName] = useState("");
   const [deliveryMode, setDeliveryMode] = useState<DeliveryMode>("direct");
   const [touchedEmail, setTouchedEmail] = useState(false);
-  const [isResumeModalOpen, setIsResumeModalOpen] = useState(false);
+  const [internalIsOpen, setInternalIsOpen] = useState(false);
+
+  const isResumeModalOpen = externalIsOpen !== undefined ? externalIsOpen : internalIsOpen;
+  const setIsResumeModalOpen = (open: boolean) => {
+    if (open) {
+      if (onOpenResumeModal) onOpenResumeModal();
+      else setInternalIsOpen(true);
+    } else {
+      if (onCloseResumeModal) onCloseResumeModal();
+      else setInternalIsOpen(false);
+    }
+  };
 
   const copyResetTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const statusRef = useRef<HTMLDivElement | null>(null);
@@ -158,7 +175,6 @@ export default function ContactSection() {
     if (deliveryMode === "email") {
       setSubmissionStatus("fallback");
       setSubmissionMessage("");
-      setIsResumeModalOpen(true);
       window.location.href = fallbackEmailHref;
       return;
     }
@@ -242,7 +258,6 @@ export default function ContactSection() {
           : "The contact service is temporarily busy. Please use direct email to complete."
       );
       setSubmissionStatus("error");
-      setIsResumeModalOpen(true);
     }
   };
 
@@ -254,7 +269,7 @@ export default function ContactSection() {
       <div className="mx-auto mt-8 sm:mt-10 lg:mt-12 w-full max-w-7xl min-w-0 space-y-8 sm:space-y-10">
         <SectionHeader
           badgeIcon={Mail}
-          badgeText="DIRECT CONTACT & RESUME GATE"
+          badgeText="DIRECT CONTACT & INQUIRIES"
           badgeVariant="cyan"
           title={
             <span className="inline-flex flex-wrap items-center justify-center gap-x-2.5 sm:gap-x-3">
@@ -262,7 +277,7 @@ export default function ContactSection() {
               <span className="text-gradient-primary">Touch</span>
             </span>
           }
-          subtitle="Available for Senior SDET, Lead Automation Architect, and AI Engineering roles. Fill in your details below to send a message and unlock the official resume."
+          subtitle="Available for Senior SDET, Lead Automation Architect, and AI Engineering roles. Send a message below to connect directly."
         />
 
         {/* Form and Info Grid */}
@@ -461,33 +476,9 @@ export default function ContactSection() {
                   <p className="text-xs sm:text-sm text-slate-300 max-w-md mx-auto leading-relaxed font-normal">
                     {submissionMessage}
                   </p>
-
-                  <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/15 border border-emerald-400/40 text-emerald-300 text-xs font-mono font-bold uppercase tracking-wider">
-                    <Unlock className="w-3.5 h-3.5" />
-                    <span>Resume Download Unlocked</span>
-                  </div>
                 </div>
 
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
-                  <button
-                    type="button"
-                    onClick={handleDownloadResume}
-                    className="ui-pressable ui-glass-surface inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 border border-emerald-300 text-xs font-bold text-white shadow-[0_0_20px_rgba(16,185,129,0.4)] hover:shadow-[0_0_30px_rgba(16,185,129,0.6)] transition-all"
-                  >
-                    <Download className="w-4 h-4" />
-                    <span>Download Resume</span>
-                  </button>
-
-                  <a
-                    href="/Harish_Chintala_Resume.pdf"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="ui-pressable ui-glass-surface inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-xs font-semibold text-white hover:bg-white/15 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
-                  >
-                    <span>View Online</span>
-                    <ExternalLink className="w-3.5 h-3.5 opacity-80" />
-                  </a>
-
+                <div className="flex items-center justify-center pt-2">
                   <button
                     type="button"
                     onClick={() => {
@@ -496,10 +487,10 @@ export default function ContactSection() {
                       setSubmittedName("");
                       requestAnimationFrame(() => nameInputRef.current?.focus());
                     }}
-                    className="ui-pressable inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-slate-800 border border-slate-700 hover:bg-slate-700 text-xs font-bold text-white transition-all"
+                    className="ui-pressable inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-slate-800 border border-slate-700 hover:bg-slate-700 text-xs font-bold text-white transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
                   >
                     <RefreshCw className="w-3.5 h-3.5 text-cyan-400" />
-                    <span>Send Another Email</span>
+                    <span>Send Another Message</span>
                   </button>
                 </div>
               </div>
@@ -510,25 +501,13 @@ export default function ContactSection() {
                 suppressHydrationWarning
                 className="flex flex-col space-y-5"
               >
-                <div className="flex flex-col gap-2 min-[480px]:flex-row min-[480px]:items-center min-[480px]:justify-between border-b border-white/10 pb-4">
-                  <div>
-                    <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-white flex items-center gap-2">
-                      <span>Share Your Details</span>
-                    </h3>
-                    <p className="text-xs text-slate-300 mt-0.5">
-                      Enter your details to send a message and unlock the official resume PDF download.
-                    </p>
-                  </div>
-                  
-                  <button
-                    type="button"
-                    onClick={() => setIsResumeModalOpen(true)}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-mono font-bold uppercase tracking-wider bg-amber-500/15 border border-amber-400/40 text-amber-300 hover:bg-amber-500/25 transition-all cursor-pointer self-start min-[480px]:self-auto"
-                    title="Click to view resume download options"
-                  >
-                    <Lock className="w-3.5 h-3.5 text-amber-300" />
-                    <span>Unlocks Resume</span>
-                  </button>
+                <div className="border-b border-white/10 pb-4">
+                  <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-white flex items-center gap-2">
+                    <span>Share Your Details</span>
+                  </h3>
+                  <p className="text-xs text-slate-300 mt-0.5">
+                    Have a role or opportunity? Send your message below.
+                  </p>
                 </div>
 
                 {/* Form Input Fields */}

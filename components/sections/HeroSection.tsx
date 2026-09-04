@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import {
-  ArrowDown,
   ArrowRight,
   FileText,
   FolderOpen,
@@ -10,7 +9,11 @@ import {
 } from "lucide-react";
 import { PERSONAL_INFO } from "@/data";
 import { useTypewriter } from "@/hooks";
-export default function HeroSection() {
+interface HeroSectionProps {
+  onOpenResume?: () => void;
+}
+
+export default function HeroSection({ onOpenResume }: HeroSectionProps = {}) {
   const animatedRole = useTypewriter(PERSONAL_INFO.heroRoles, 70, 35, 2000);
 
   return (
@@ -70,17 +73,25 @@ export default function HeroSection() {
             </a>
 
             <a
-              href="#send-message"
-              aria-label="Go to the Send Message form to access the resume"
-              className="hero-cta hero-cta-resume group w-full sm:w-auto shrink-0"
+              href="/Harish_Chintala_Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="View Resume"
+              onClick={(e) => {
+                if (onOpenResume) {
+                  e.preventDefault();
+                  onOpenResume();
+                }
+              }}
+              className="hero-cta hero-cta-resume group w-full sm:w-auto shrink-0 cursor-pointer"
             >
               <span aria-hidden="true" className="hero-cta-sheen" />
               <span aria-hidden="true" className="hero-cta-icon">
                 <FileText className="h-4 w-4" />
               </span>
-              <span className="hero-cta-label">Access resume</span>
+              <span className="hero-cta-label">View Resume</span>
               <span aria-hidden="true" className="hero-cta-arrow">
-                <ArrowDown className="h-4 w-4" />
+                <ArrowRight className="h-4 w-4" />
               </span>
             </a>
           </div>

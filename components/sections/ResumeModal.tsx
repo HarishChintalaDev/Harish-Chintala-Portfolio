@@ -46,6 +46,36 @@ export default function ResumeModal({
     };
   }, [isOpen, onClose]);
 
+  const handleDownload = () => {
+    if (onDownloadResume) {
+      onDownloadResume();
+      return;
+    }
+    try {
+      const link = document.createElement("a");
+      link.href = "/Harish_Chintala_Resume.pdf";
+      link.download = "Harish_Chintala_Resume.pdf";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch {
+      window.open("/Harish_Chintala_Resume.pdf", "_blank");
+    }
+
+    try {
+      import("canvas-confetti").then((module) => {
+        const confetti = module.default;
+        confetti({
+          particleCount: 110,
+          spread: 90,
+          origin: { y: 0.5 },
+        });
+      });
+    } catch {
+      // Ignore confetti fallback
+    }
+  };
+
   if (!mounted) return null;
 
   return createPortal(
@@ -84,17 +114,23 @@ export default function ResumeModal({
 
             <div className="text-center space-y-6">
               {/* Animated Glow Icon Badge */}
-              <div className="relative w-16 h-16 rounded-full bg-emerald-500/20 border border-emerald-400/50 text-emerald-300 mx-auto flex items-center justify-center shadow-[0_0_35px_rgba(16,185,129,0.5)]">
-                <Unlock className="w-8 h-8 text-emerald-300" />
+              <div className="relative w-16 h-16 rounded-full bg-cyan-500/20 border border-cyan-400/50 text-cyan-300 mx-auto flex items-center justify-center shadow-[0_0_35px_rgba(0,229,255,0.4)]">
+                {submittedName ? (
+                  <Unlock className="w-8 h-8 text-emerald-300" />
+                ) : (
+                  <FileText className="w-8 h-8 text-cyan-300" />
+                )}
               </div>
 
               {/* Header Text */}
               <div className="space-y-2">
                 <h3 id="resume-modal-title" className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-                  {submittedName ? `Thank You, ${submittedName}! 🎉` : "Resume Download Unlocked! 🎉"}
+                  {submittedName ? `Thank You, ${submittedName}! 🎉` : "Resume Download & Preview"}
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-300 max-w-md mx-auto leading-relaxed">
-                  Your message was prepared / delivered. Click below whenever you are ready to download the official PDF resume.
+                  {submittedName
+                    ? "Your message was delivered. You can download or view the official PDF resume below."
+                    : "Download the complete ATS-friendly PDF or preview it directly in your browser. Available for Senior SDET and Automation Lead roles."}
                 </p>
               </div>
 
@@ -108,7 +144,7 @@ export default function ResumeModal({
                 <div className="flex flex-col sm:flex-row gap-3 pt-1">
                   <button
                     type="button"
-                    onClick={onDownloadResume}
+                    onClick={handleDownload}
                     className="ui-pressable ui-glass-surface flex-1 inline-flex items-center justify-center gap-2.5 px-4 py-3 rounded-xl bg-gradient-to-r from-cyan-500 via-teal-500 to-emerald-500 border border-cyan-300 text-xs sm:text-sm font-bold text-white shadow-[0_0_20px_rgba(0,229,255,0.4)] hover:shadow-[0_0_30px_rgba(0,229,255,0.6)] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
                   >
                     <Download className="w-4 h-4" />

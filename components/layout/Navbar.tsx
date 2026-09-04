@@ -212,7 +212,7 @@ export default function Navbar({
                     setMobileMenuOpen(false);
                     onOpenCommandPalette();
                   }}
-                  className="ui-pressable ui-glass-surface ui-button-sheen min-h-11 px-4 py-2 rounded-xl text-xs font-semibold flex items-center gap-2.5 text-cyan-300 bg-cyan-500/10 border border-cyan-400/20 hover:bg-cyan-500/20 transition-colors"
+                  className="ui-pressable ui-glass-surface ui-button-sheen min-h-11 px-4 py-2 rounded-xl text-xs font-semibold flex items-center gap-2.5 text-slate-200 bg-white/5 border border-white/10 hover:bg-white/10 transition-colors"
                 >
                   <Search className="w-4 h-4" />
                   <span>Open Command Palette</span>

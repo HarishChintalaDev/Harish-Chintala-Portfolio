@@ -26,6 +26,7 @@ const ParticlesCanvas = dynamic(() => import("@/components/background/ParticlesC
 
 export default function Home() {
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
+  const [isResumeModalOpen, setIsResumeModalOpen] = useState(false);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -69,7 +70,9 @@ export default function Home() {
       />
 
       {/* Hero Section */}
-      <HeroSection />
+      <HeroSection
+        onOpenResume={() => setIsResumeModalOpen(true)}
+      />
 
       {/* Experience Timeline */}
       <ExperienceSection />
@@ -90,7 +93,11 @@ export default function Home() {
       <EducationSection />
 
       {/* Contact Section */}
-      <ContactSection />
+      <ContactSection
+        isResumeModalOpen={isResumeModalOpen}
+        onOpenResumeModal={() => setIsResumeModalOpen(true)}
+        onCloseResumeModal={() => setIsResumeModalOpen(false)}
+      />
 
       {/* Footer */}
       <Footer />
