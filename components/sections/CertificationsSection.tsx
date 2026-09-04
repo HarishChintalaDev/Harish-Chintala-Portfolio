@@ -73,8 +73,17 @@ export default function CertificationsSection() {
 
                 {/* Certificate File / Image Preview Container */}
                 <div
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`View certificate preview for ${cert.title}`}
                   onClick={() => handleOpenModal(cert)}
-                  className="group/file relative rounded-2xl bg-slate-900/90 border border-slate-700/90 hover:border-emerald-400/60 transition-all cursor-pointer overflow-hidden shadow-inner"
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      handleOpenModal(cert);
+                    }
+                  }}
+                  className="group/file relative rounded-2xl bg-slate-900/90 border border-slate-700/90 hover:border-emerald-400/60 transition-all cursor-pointer overflow-hidden shadow-inner focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
                 >
                   {!isPdf && cert.fileUrl ? (
                     <div className="relative h-44 sm:h-48 w-full bg-slate-950/80 flex items-center justify-center overflow-hidden">

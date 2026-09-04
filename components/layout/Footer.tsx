@@ -1,6 +1,6 @@
 "use client";
 
-import { PERSONAL_INFO } from "@/data/portfolioData";
+import { PERSONAL_INFO } from "@/data";
 import SectionDivider from "@/components/ui/SectionDivider";
 
 export default function Footer() {
