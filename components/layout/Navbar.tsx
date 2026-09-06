@@ -14,6 +14,74 @@ interface NavbarProps {
 
 const SECTION_IDS = NAV_LINKS.map((link) => link.id);
 
+const SECTION_THEMES: Record<
+  string,
+  {
+    indicatorGradient: string;
+    indicatorGlow: string;
+    borderScrolled: string;
+    mobileActiveText: string;
+    mobileActiveBg: string;
+  }
+> = {
+  home: {
+    indicatorGradient: "from-sky-400 to-cyan-300",
+    indicatorGlow: "shadow-[0_0_10px_rgba(6,182,212,0.6)]",
+    borderScrolled: "border-cyan-400/30 shadow-cyan-500/10",
+    mobileActiveText: "text-cyan-300",
+    mobileActiveBg: "bg-cyan-500/10",
+  },
+  experience: {
+    indicatorGradient: "from-purple-400 to-fuchsia-400",
+    indicatorGlow: "shadow-[0_0_10px_rgba(192,132,252,0.6)]",
+    borderScrolled: "border-purple-400/30 shadow-purple-500/10",
+    mobileActiveText: "text-purple-300",
+    mobileActiveBg: "bg-purple-500/10",
+  },
+  projects: {
+    indicatorGradient: "from-cyan-400 to-teal-300",
+    indicatorGlow: "shadow-[0_0_10px_rgba(0,229,255,0.6)]",
+    borderScrolled: "border-cyan-400/30 shadow-cyan-500/10",
+    mobileActiveText: "text-cyan-300",
+    mobileActiveBg: "bg-cyan-500/10",
+  },
+  skills: {
+    indicatorGradient: "from-indigo-400 to-violet-400",
+    indicatorGlow: "shadow-[0_0_10px_rgba(129,140,248,0.6)]",
+    borderScrolled: "border-indigo-400/30 shadow-indigo-500/10",
+    mobileActiveText: "text-indigo-300",
+    mobileActiveBg: "bg-indigo-500/10",
+  },
+  awards: {
+    indicatorGradient: "from-amber-400 to-yellow-300",
+    indicatorGlow: "shadow-[0_0_10px_rgba(245,158,11,0.6)]",
+    borderScrolled: "border-amber-400/30 shadow-amber-500/10",
+    mobileActiveText: "text-amber-300",
+    mobileActiveBg: "bg-amber-500/10",
+  },
+  certifications: {
+    indicatorGradient: "from-emerald-400 to-teal-300",
+    indicatorGlow: "shadow-[0_0_10px_rgba(16,185,129,0.6)]",
+    borderScrolled: "border-emerald-400/30 shadow-emerald-500/10",
+    mobileActiveText: "text-emerald-300",
+    mobileActiveBg: "bg-emerald-500/10",
+  },
+  education: {
+    indicatorGradient: "from-sky-400 to-blue-400",
+    indicatorGlow: "shadow-[0_0_10px_rgba(59,130,246,0.6)]",
+    borderScrolled: "border-sky-400/30 shadow-sky-500/10",
+    mobileActiveText: "text-sky-300",
+    mobileActiveBg: "bg-sky-500/10",
+  },
+  contact: {
+    indicatorGradient: "from-cyan-400 via-sky-400 to-purple-400",
+    indicatorGlow: "shadow-[0_0_12px_rgba(56,189,248,0.7)]",
+    borderScrolled: "border-sky-400/30 shadow-sky-500/10",
+    mobileActiveText: "text-cyan-300",
+    mobileActiveBg: "bg-sky-500/10",
+  },
+};
+
 export default function Navbar({
   onOpenCommandPalette,
 }: NavbarProps) {
@@ -23,6 +91,7 @@ export default function Navbar({
   const mobileMenuRef = useRef<HTMLElement | null>(null);
   const shouldReduceMotion = useReducedMotion();
   const activeSection = useActiveSection(SECTION_IDS, "home");
+  const currentTheme = SECTION_THEMES[activeSection] || SECTION_THEMES.home;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -87,7 +156,7 @@ export default function Navbar({
 
       <div
         className={`relative z-20 max-w-7xl mx-auto rounded-2xl transition-all duration-300 px-3 sm:px-5 py-3 flex items-center justify-between gap-2 lg:gap-3 glass-nav shadow-2xl border border-white/15 ${
-          scrolled ? "bg-[#050816]/95 border-cyan-400/30 shadow-cyan-500/10" : "bg-[#050816]/85"
+          scrolled ? `bg-[#050816]/95 ${currentTheme.borderScrolled}` : "bg-[#050816]/85"
         }`}
       >
         {/* Left Side: Brand Name */}
@@ -116,8 +185,8 @@ export default function Navbar({
                 {isActive && (
                   <motion.div
                     layoutId="activeNavLine"
-                    transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.2 }}
-                    className="absolute bottom-0 left-2 right-2 xl:left-3 xl:right-3 h-[2px] bg-gradient-to-r from-sky-400 to-cyan-300 rounded-full shadow-[0_0_10px_#00E5FF]"
+                    transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.25, ease: "easeOut" }}
+                    className={`absolute bottom-0 left-2 right-2 xl:left-3 xl:right-3 h-[2px] bg-gradient-to-r ${currentTheme.indicatorGradient} rounded-full ${currentTheme.indicatorGlow}`}
                   />
                 )}
               </a>
@@ -218,21 +287,25 @@ export default function Navbar({
                   <span>Open Command Palette</span>
                 </button>
               )}
-              {NAV_LINKS.map((link) => (
-                <a
-                  key={link.id}
-                  href={link.href}
-                  aria-current={activeSection === link.id ? "location" : undefined}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className={`ui-pressable min-h-11 px-4 py-2 rounded-xl text-xs font-semibold flex items-center transition-all ${
-                    activeSection === link.id
-                      ? "text-cyan-300 bg-cyan-500/10"
-                      : "text-slate-200 hover:text-white hover:bg-white/10"
-                  }`}
-                >
-                  {link.name}
-                </a>
-              ))}
+              {NAV_LINKS.map((link) => {
+                const isLinkActive = activeSection === link.id || (link.name === "Home" && activeSection === "home");
+                const linkTheme = SECTION_THEMES[link.id] || SECTION_THEMES.home;
+                return (
+                  <a
+                    key={link.id}
+                    href={link.href}
+                    aria-current={isLinkActive ? "location" : undefined}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={`ui-pressable min-h-11 px-4 py-2 rounded-xl text-xs font-semibold flex items-center transition-all ${
+                      isLinkActive
+                        ? `${linkTheme.mobileActiveText} ${linkTheme.mobileActiveBg}`
+                        : "text-slate-200 hover:text-white hover:bg-white/10"
+                    }`}
+                  >
+                    {link.name}
+                  </a>
+                );
+              })}
 
               <div className="pt-3 border-t border-white/10 flex flex-col min-[360px]:flex-row min-[360px]:items-center justify-between gap-3 px-2">
                 <div className="flex items-center justify-center gap-2.5">
@@ -240,7 +313,7 @@ export default function Navbar({
                     href={`mailto:${PERSONAL_INFO.email}`}
                     aria-label="Email Harish"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="ui-pressable ui-glass-surface w-11 h-11 inline-flex items-center justify-center rounded-full bg-white/10 text-rose-400 hover:bg-rose-500/20 transition-all"
+                    className="ui-pressable ui-glass-surface w-11 h-11 inline-flex items-center justify-center rounded-full bg-white/10 text-[#EA4335] hover:bg-[#EA4335]/20 transition-all"
                   >
                     <Mail className="w-4 h-4" />
                   </a>

@@ -265,16 +265,16 @@ export default function ContactSection({
 
   return (
     <section id="contact" suppressHydrationWarning className="relative z-10 scroll-mt-24 bg-transparent px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
-      <SectionDivider variant="cyan" />
+      <SectionDivider variant="aurora" />
       <div className="mx-auto mt-8 sm:mt-10 lg:mt-12 w-full max-w-7xl min-w-0 space-y-8 sm:space-y-10">
         <SectionHeader
           badgeIcon={Mail}
           badgeText="DIRECT CONTACT & INQUIRIES"
-          badgeVariant="cyan"
+          badgeVariant="aurora"
           title={
             <span className="inline-flex flex-wrap items-center justify-center gap-x-2.5 sm:gap-x-3">
               <span>Get in</span>
-              <span className="text-gradient-primary">Touch</span>
+              <span className="text-gradient-aurora">Touch</span>
             </span>
           }
           subtitle="Available for Senior SDET, Lead Automation Architect, and AI Engineering roles. Send a message below to connect directly."
@@ -298,7 +298,7 @@ export default function ContactSection({
                   </p>
                 </div>
 
-                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-mono font-bold uppercase tracking-wider bg-cyan-500/15 border border-cyan-400/40 text-cyan-300 self-start min-[480px]:self-auto shrink-0">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-mono font-bold uppercase tracking-wider bg-gradient-to-r from-cyan-500/15 via-indigo-500/15 to-purple-500/15 border border-sky-400/40 text-sky-200 self-start min-[480px]:self-auto shrink-0 shadow-[0_0_15px_rgba(56,189,248,0.2)]">
                   <Sparkles className="w-3.5 h-3.5 text-cyan-300" />
                   <span>Direct Contact</span>
                 </span>
@@ -307,16 +307,16 @@ export default function ContactSection({
               {/* Contact Cards List */}
               <div className="flex flex-col gap-3 lg:flex-1 lg:justify-between">
                 {/* Email Card */}
-                <div className="group p-3.5 sm:p-4 rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-rose-500/50 hover:bg-rose-500/10 flex items-center justify-between gap-3 transition-all duration-300 shadow-inner">
+                <div className="group p-3.5 sm:p-4 rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-[#EA4335]/60 hover:bg-[#EA4335]/10 flex items-center justify-between gap-3 transition-all duration-300 shadow-inner">
                   <div className="flex items-center gap-3.5 min-w-0">
-                    <div className="p-2.5 rounded-xl bg-rose-500/20 border border-rose-400/40 text-rose-400 group-hover:scale-105 transition-transform shrink-0">
+                    <div className="p-2.5 rounded-xl bg-[#EA4335]/15 border border-[#EA4335]/40 text-[#EA4335] group-hover:scale-105 transition-transform shrink-0 shadow-[0_0_15px_rgba(234,67,53,0.2)]">
                       <Mail aria-hidden="true" className="w-4 h-4 sm:w-5 sm:h-5" />
                     </div>
                     <div className="min-w-0">
                       <div className="text-[10.5px] font-mono text-slate-400 font-semibold uppercase tracking-wider">Email Address</div>
                       <a
                         href={`mailto:${PERSONAL_INFO.email}`}
-                        className="text-xs sm:text-sm font-semibold text-white group-hover:text-rose-300 transition-colors break-words [overflow-wrap:anywhere] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-400 rounded-sm"
+                        className="text-xs sm:text-sm font-semibold text-white group-hover:text-[#EA4335] transition-colors break-words [overflow-wrap:anywhere] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EA4335] rounded-sm"
                       >
                         {PERSONAL_INFO.email}
                       </a>
@@ -325,7 +325,7 @@ export default function ContactSection({
                   <button
                     type="button"
                     onClick={() => handleCopyText(PERSONAL_INFO.email, "email")}
-                    className="ui-pressable ui-glass-surface w-9 h-9 sm:w-10 sm:h-10 shrink-0 inline-flex items-center justify-center rounded-xl bg-slate-800 border border-slate-700 hover:bg-slate-700 text-xs text-slate-300 hover:text-white transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-400"
+                    className="ui-pressable ui-glass-surface w-9 h-9 sm:w-10 sm:h-10 shrink-0 inline-flex items-center justify-center rounded-xl bg-slate-800 border border-slate-700 hover:bg-slate-700 text-xs text-slate-300 hover:text-white transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EA4335]"
                     title={copiedField === "email" ? "Email copied!" : "Copy email address"}
                     aria-label={copiedField === "email" ? "Email address copied" : "Copy email address"}
                   >
@@ -518,7 +518,7 @@ export default function ContactSection({
                       <span className="flex items-center gap-1.5">
                         <User aria-hidden="true" className="w-3.5 h-3.5 text-cyan-400" />
                         <span>Your Name</span>
-                        <span className="text-rose-400" aria-hidden="true">*</span>
+                        <span className="text-cyan-400" aria-hidden="true">*</span>
                       </span>
                     </label>
                     <input
@@ -544,7 +544,7 @@ export default function ContactSection({
                       <span className="flex items-center gap-1.5">
                         <Mail aria-hidden="true" className="w-3.5 h-3.5 text-cyan-400" />
                         <span>Your Email</span>
-                        <span className="text-rose-400" aria-hidden="true">*</span>
+                        <span className="text-cyan-400" aria-hidden="true">*</span>
                       </span>
                       {touchedEmail && formData.email && (
                         <span className={`text-[10.5px] font-sans flex items-center gap-1 ${isValidEmail(formData.email) ? "text-emerald-400" : "text-amber-400"}`}>
@@ -616,7 +616,7 @@ export default function ContactSection({
                     <label htmlFor="contact-message" className="text-xs font-mono text-slate-300 font-semibold flex items-center gap-1.5">
                       <MessageSquare aria-hidden="true" className="w-3.5 h-3.5 text-cyan-400" />
                       <span>Your Message</span>
-                      <span className="text-rose-400" aria-hidden="true">*</span>
+                      <span className="text-cyan-400" aria-hidden="true">*</span>
                     </label>
                     <span className="text-[10px] font-mono text-slate-400">
                       {formData.message.length}/5000

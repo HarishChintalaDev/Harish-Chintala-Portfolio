@@ -1361,8 +1361,38 @@ html.light .project-metric-cell dt,
   -webkit-text-fill-color: transparent;
 }
 
+.text-gradient-aurora {
+  background: linear-gradient(135deg, #00E5FF 0%, #38BDF8 35%, #818CF8 70%, #C084FC 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .text-gradient-purple {
-  background: linear-gradient(135deg, #C084FC 0%, #818CF8 50%, #6366F1 100%);
+  background: linear-gradient(135deg, #C084FC 0%, #A855F7 50%, #9333EA 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-indigo {
+  background: linear-gradient(135deg, #A5B4FC 0%, #818CF8 50%, #6366F1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-blue {
+  background: linear-gradient(135deg, #93C5FD 0%, #60A5FA 50%, #3B82F6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-teal {
+  background: linear-gradient(135deg, #A7F3D0 0%, #2DD4BF 50%, #0D9488 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-orange {
+  background: linear-gradient(135deg, #FED7AA 0%, #FB923C 50%, #EA580C 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }

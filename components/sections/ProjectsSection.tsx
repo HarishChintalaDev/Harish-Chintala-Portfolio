@@ -98,12 +98,12 @@ export default function ProjectsSection() {
 
   return (
     <section id="projects" className="relative z-10 scroll-mt-24 bg-transparent px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
-      <SectionDivider variant="blue" />
+      <SectionDivider variant="cyan" />
       <div className="mx-auto mt-8 sm:mt-10 lg:mt-12 w-full max-w-7xl min-w-0 space-y-8 sm:space-y-10">
         <SectionHeader
           badgeIcon={Code}
           badgeText="ENGINEERING CASE STUDIES"
-          badgeVariant="blue"
+          badgeVariant="cyan"
           title={
             <span className="inline-flex flex-wrap items-center justify-center gap-x-2.5 sm:gap-x-3">
               <span>Featured</span>
@@ -195,7 +195,7 @@ export default function ProjectsSection() {
                 }
                 className="h-full transform-gpu"
               >
-                <div className="glass-card p-6 rounded-3xl border border-white/15 space-y-5 flex flex-col justify-between group hover:border-cyan-400/50 transition-colors duration-300 h-full shadow-xl">
+                <div className="glass-card p-6 rounded-3xl border border-white/15 space-y-5 flex flex-col justify-between group hover:border-cyan-400/50 hover:shadow-[0_8px_30px_rgba(6,182,212,0.14)] transition-all duration-300 h-full shadow-xl">
                   <div className="space-y-4">
                     {/* Consistent metadata: category/date first, company below. */}
                     <div className="space-y-2.5">

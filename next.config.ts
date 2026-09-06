@@ -22,6 +22,9 @@ const nextConfig: NextConfig = {
   compress: true,
   poweredByHeader: false,
   devIndicators: false,
+  compiler: {
+    removeConsole: process.env.NODE_ENV === "production" ? { exclude: ["error", "warn"] } : false,
+  },
   experimental: {
     optimizePackageImports: [
       "lucide-react",
@@ -29,6 +32,8 @@ const nextConfig: NextConfig = {
       "clsx",
       "tailwind-merge",
       "canvas-confetti",
+      "@fontsource-variable/jetbrains-mono",
+      "@fontsource-variable/plus-jakarta-sans",
     ],
   },
   async headers() {
@@ -38,7 +43,7 @@ const nextConfig: NextConfig = {
         headers: securityHeaders,
       },
       {
-        source: "/(profile.webp|favicon.ico|Harish_Chintala_Resume.pdf)",
+        source: "/(profile.webp|favicon.ico|Harish_Chintala_Resume.pdf|certifications/:path*)",
         headers: [
           {
             key: "Cache-Control",

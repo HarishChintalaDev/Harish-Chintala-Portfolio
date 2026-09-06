@@ -8,23 +8,23 @@ import SectionDivider from "@/components/ui/SectionDivider";
 export default function EducationSection() {
   return (
     <section id="education" className="relative z-10 scroll-mt-24 bg-transparent px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
-      <SectionDivider variant="purple" />
+      <SectionDivider variant="blue" />
       <div className="mx-auto mt-8 sm:mt-10 lg:mt-12 w-full max-w-7xl min-w-0 space-y-8 sm:space-y-10">
       <SectionHeader
         badgeIcon={GraduationCap}
         badgeText="ACADEMIC FOUNDATION"
-        badgeVariant="purple"
+        badgeVariant="blue"
         title={
           <span className="inline-flex flex-wrap items-center justify-center gap-x-2.5 sm:gap-x-3">
             <span>Education &</span>
-            <span className="text-gradient-purple">Engineering Foundation</span>
+            <span className="text-gradient-blue">Engineering Foundation</span>
           </span>
         }
         subtitle="Bachelor of Technology in Mechanical Engineering with a strong foundation in quality inspection and system analysis."
       />
 
       {/* Main Content Card */}
-      <div className="glass-card min-w-0 space-y-6 rounded-3xl border border-white/15 p-5 shadow-2xl sm:p-8">
+      <div className="glass-card min-w-0 space-y-6 rounded-3xl border border-white/15 p-5 shadow-2xl transition-all duration-300 hover:border-sky-400/50 hover:shadow-[0_8px_30px_rgba(59,130,246,0.14)] sm:p-8">
         <div className="flex flex-col items-start gap-4 min-[480px]:flex-row min-[480px]:items-center">
           <div className="shrink-0 rounded-2xl bg-gradient-to-br from-sky-700 via-indigo-700 to-purple-700 p-3.5 text-white shadow-lg shadow-sky-500/20">
             <GraduationCap className="w-7 h-7" />

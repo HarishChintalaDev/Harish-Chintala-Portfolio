@@ -14,12 +14,9 @@ import personal from "@/content/personal.json";
 import experiences from "@/content/experiences.json";
 import projects from "@/content/projects.json";
 import skills from "@/content/skills.json";
-import architecture from "@/content/architecture.json";
-import roi from "@/content/roi.json";
 import awards from "@/content/awards.json";
 import certifications from "@/content/certifications.json";
 import education from "@/content/education.json";
-import testimonials from "@/content/testimonials.json";
 import siteConfig from "@/content/siteConfig.json";
 
 export const masterData = {
@@ -27,12 +24,9 @@ export const masterData = {
   experiences,
   projects,
   skills,
-  architecture,
-  roi,
   awards,
   certifications,
   education,
-  testimonials,
   siteConfig,
 };
 

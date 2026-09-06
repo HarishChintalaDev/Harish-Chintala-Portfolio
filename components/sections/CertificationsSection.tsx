@@ -51,7 +51,7 @@ export default function CertificationsSection() {
           return (
             <article
               key={cert.id}
-              className="glass-card flex flex-col justify-between h-full min-w-0 space-y-5 rounded-3xl border border-white/15 p-5 shadow-xl transition-all hover:border-emerald-400/50 sm:p-6"
+              className="glass-card flex flex-col justify-between h-full min-w-0 space-y-5 rounded-3xl border border-white/15 p-5 shadow-xl transition-all duration-300 hover:border-emerald-400/50 hover:shadow-[0_8px_30px_rgba(16,185,129,0.14)] sm:p-6"
             >
               <div className="space-y-5">
                 {/* Top Left Check Icon Badge & Issue Date */}

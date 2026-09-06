@@ -49,7 +49,7 @@ export default function AwardsSection() {
         {AWARDS.map((award) => (
           <article
             key={award.id}
-            className="glass-card p-6.5 rounded-3xl border border-white/15 space-y-4 group hover:border-amber-400/50 transition-all hover:scale-[1.02] motion-reduce:hover:scale-100 motion-reduce:transition-none shadow-xl"
+            className="glass-card p-6.5 rounded-3xl border border-white/15 space-y-4 group hover:border-amber-400/50 hover:shadow-[0_8px_30px_rgba(245,158,11,0.14)] transition-all duration-300 hover:scale-[1.02] motion-reduce:hover:scale-100 motion-reduce:transition-none shadow-xl"
           >
             <div className="flex items-start justify-between gap-3">
               {/* Top Left Ribbon Icon Badge */}
