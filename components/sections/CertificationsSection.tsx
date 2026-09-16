@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import dynamic from "next/dynamic";
-import { CheckCircle2, Eye, FileText, Image as ImageIcon, ShieldCheck } from "lucide-react";
+import { CheckCircle2, Eye, FileText, ShieldCheck, ZoomIn } from "lucide-react";
 import { CERTIFICATIONS } from "@/data";
 import SectionHeader from "@/components/ui/SectionHeader";
 import SectionDivider from "@/components/ui/SectionDivider";
@@ -75,7 +75,7 @@ export default function CertificationsSection() {
                 <div
                   role="button"
                   tabIndex={0}
-                  aria-label={`View certificate preview for ${cert.title}`}
+                  aria-label={`View certificate for ${cert.title}`}
                   onClick={() => handleOpenModal(cert)}
                   onKeyDown={(e) => {
                     if (e.key === "Enter" || e.key === " ") {
@@ -83,39 +83,29 @@ export default function CertificationsSection() {
                       handleOpenModal(cert);
                     }
                   }}
-                  className="group/file relative rounded-2xl bg-slate-900/90 border border-slate-700/90 hover:border-emerald-400/60 transition-all cursor-pointer overflow-hidden shadow-inner focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
+                  className="group/file relative rounded-2xl bg-slate-900/90 border border-slate-700/80 hover:border-emerald-400/60 transition-all cursor-pointer overflow-hidden shadow-inner focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
                 >
                   {!isPdf && cert.fileUrl ? (
-                    <div className="relative h-44 sm:h-48 w-full bg-slate-950/80 flex items-center justify-center overflow-hidden">
+                    <div className="relative h-44 sm:h-48 w-full bg-slate-950 flex items-center justify-center overflow-hidden">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         src={cert.fileUrl}
-                        alt={`Thumbnail preview for ${cert.title}`}
-                        className="w-full h-full object-cover object-center group-hover/file:scale-105 transition-transform duration-300 opacity-90 group-hover/file:opacity-100"
+                        alt={`Certificate preview for ${cert.title}`}
+                        className="w-full h-full object-cover object-center group-hover/file:scale-105 transition-transform duration-300"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
 
-                      <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs text-white">
-                        <span className="font-mono text-[11px] font-bold text-emerald-300 bg-slate-950/80 backdrop-blur-md px-2.5 py-1 rounded-lg border border-emerald-400/30 flex items-center gap-1.5">
-                          <ImageIcon className="w-3.5 h-3.5 text-emerald-400" />
-                          <span>Image Certificate</span>
-                        </span>
-
-                        <span className="font-mono text-[11px] font-bold bg-slate-950/80 backdrop-blur-md px-2.5 py-1 rounded-lg border border-white/20 text-slate-200 group-hover/file:text-emerald-300 transition-colors flex items-center gap-1">
-                          <Eye className="w-3.5 h-3.5 text-emerald-400" /> Click to Expand
+                      {/* Subtle corner zoom icon on hover */}
+                      <div className="absolute top-3 right-3 opacity-0 group-hover/file:opacity-100 transition-opacity duration-200">
+                        <span className="w-8 h-8 rounded-xl bg-slate-950/80 backdrop-blur-md border border-emerald-400/40 text-emerald-300 flex items-center justify-center shadow-lg">
+                          <ZoomIn className="w-4 h-4" />
                         </span>
                       </div>
                     </div>
                   ) : (
                     <div className="p-4 space-y-2">
-                      <div className="flex items-center justify-between text-[11px] font-mono uppercase tracking-wider text-slate-400 font-semibold">
-                        <span className="flex items-center gap-1.5 text-emerald-400">
-                          {isPdf ? <FileText className="w-3.5 h-3.5" /> : <ImageIcon className="w-3.5 h-3.5" />}
-                          <span>{isPdf ? "PDF Document File" : "Image File"}</span>
-                        </span>
-                        <span className="text-[10px] text-slate-400 group-hover/file:text-emerald-300 transition-colors flex items-center gap-1">
-                          <Eye className="w-3 h-3" /> Click to view
-                        </span>
+                      <div className="flex items-center gap-2 text-[11px] font-mono uppercase tracking-wider text-emerald-400 font-semibold">
+                        <FileText className="w-3.5 h-3.5" />
+                        <span>PDF Credential Document</span>
                       </div>
 
                       <div className="break-all font-mono text-xs font-bold text-slate-200 group-hover/file:text-emerald-300 transition-colors truncate">
@@ -137,7 +127,7 @@ export default function CertificationsSection() {
                 </div>
               </div>
 
-              {/* View Certificate Button */}
+              {/* Primary View Certificate Button */}
               <div className="pt-2">
                 <button
                   type="button"
@@ -145,7 +135,7 @@ export default function CertificationsSection() {
                   className="ui-pressable group/btn w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-2xl bg-emerald-500/15 hover:bg-emerald-500/30 border border-emerald-400/40 hover:border-emerald-400/70 text-emerald-300 hover:text-white text-xs font-bold transition-all shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
                 >
                   <Eye className="w-4 h-4 text-emerald-400" />
-                  <span>{isPdf ? "View Certificate PDF" : "View Full Certificate"}</span>
+                  <span>{isPdf ? "View Certificate PDF" : "View Certificate"}</span>
                 </button>
               </div>
             </article>

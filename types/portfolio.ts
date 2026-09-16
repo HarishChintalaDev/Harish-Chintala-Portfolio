@@ -61,6 +61,10 @@ export interface Award {
   year: string;
   description: string;
   badge?: string;
+  imageUrl?: string;
+  presentedBy?: string;
+  coreValue?: string;
+  citation?: string;
 }
 
 export interface Certification {
@@ -85,19 +89,6 @@ export interface Education {
   achievement: string;
 }
 
-export interface Testimonial {
-  quote: string;
-  author: string;
-  role: string;
-  company: string;
-  avatar?: string;
-}
-
-export interface AboutHighlight {
-  title: string;
-  description: string;
-  iconName: "Zap" | "Bot" | "Smartphone" | "ShieldCheck";
-}
 
 export interface PersonalInfo {
   name: string;

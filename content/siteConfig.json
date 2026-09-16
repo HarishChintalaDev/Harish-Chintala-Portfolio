@@ -80,7 +80,7 @@
     {
       "id": "cmd-awards",
       "title": "Honors & Achievements",
-      "subtitle": "Amazon & INTO Global awards",
+      "subtitle": "Delta Air Lines, Amazon & INTO Global awards",
       "iconName": "Trophy",
       "actionType": "scroll",
       "target": "awards"

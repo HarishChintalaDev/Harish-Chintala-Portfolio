@@ -8,4 +8,5 @@ export { default as CertificationsSection } from "./CertificationsSection";
 export { default as EducationSection } from "./EducationSection";
 export { default as ContactSection } from "./ContactSection";
 export { default as CertificateModal } from "./CertificateModal";
+export { default as AwardModal } from "./AwardModal";
 export { default as ResumeModal } from "./ResumeModal";
