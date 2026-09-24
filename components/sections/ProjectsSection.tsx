@@ -47,24 +47,32 @@ function ProjectMetricValue({
   const [primaryValue, detailValue] = visibleValue.split(/\s*·\s*/, 2);
 
   return (
-    <div
-      className={`inline-flex max-w-full items-baseline justify-center gap-1 font-mono font-black leading-none tracking-tight overflow-hidden ${
-        size === "modal" ? "text-xl sm:text-2xl" : "text-xs sm:text-sm lg:text-base"
-      }`}
-    >
+    <div className="flex flex-col items-center justify-center max-w-full text-center">
       <span className="sr-only">{value}</span>
-      <span aria-hidden="true" className="truncate">{primaryValue}</span>
-      {detailValue && (
-        <span
-          aria-hidden="true"
-          className={`inline-flex items-baseline gap-0.5 font-extrabold opacity-90 truncate ${
-            size === "modal" ? "text-xs sm:text-[13px]" : "text-[9px] sm:text-[10px]"
-          }`}
-        >
-          <span className="opacity-60">·</span>
-          {detailValue}
+      <div
+        className={`flex flex-wrap items-baseline justify-center gap-x-1 gap-y-0.5 max-w-full font-mono font-black leading-tight tracking-tight ${
+          size === "modal"
+            ? "text-base sm:text-xl lg:text-2xl"
+            : "text-[11px] xs:text-xs sm:text-sm lg:text-base"
+        }`}
+      >
+        <span aria-hidden="true" className="whitespace-nowrap">
+          {primaryValue}
         </span>
-      )}
+        {detailValue && (
+          <span
+            aria-hidden="true"
+            className={`whitespace-nowrap font-bold opacity-85 ${
+              size === "modal"
+                ? "text-[10px] sm:text-xs text-cyan-200/90"
+                : "text-[8.5px] xs:text-[9.5px] sm:text-[10.5px] text-emerald-300/90"
+            }`}
+          >
+            <span className="opacity-50 mr-0.5">·</span>
+            {detailValue}
+          </span>
+        )}
+      </div>
     </div>
   );
 }
@@ -226,10 +234,10 @@ export default function ProjectsSection() {
                     <dl className="project-metrics-panel">
                       {project.metrics.map((m, mIdx) => (
                         <div key={mIdx} className="project-metric-cell">
-                          <dt className="order-2 mt-1.5 font-mono text-[10.5px] font-semibold leading-snug text-slate-300">
+                          <dt className="order-2 mt-1 font-mono text-[9px] xs:text-[10px] sm:text-[10.5px] font-semibold leading-tight text-slate-300 text-center max-w-full break-words px-0.5">
                             {m.label}
                           </dt>
-                          <dd className="order-1 min-w-0 text-emerald-400 tabular-nums">
+                          <dd className="order-1 w-full min-w-0 text-emerald-400 tabular-nums">
                             <ProjectMetricValue value={m.value} displayValue={m.displayValue} />
                           </dd>
                         </div>

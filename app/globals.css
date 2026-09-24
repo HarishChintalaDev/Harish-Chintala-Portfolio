@@ -1181,8 +1181,7 @@ html.light .project-period-badge,
 
 .project-metrics-panel {
   display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  overflow: hidden;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   border: 1px solid rgba(71, 85, 105, 0.78);
   border-radius: 1rem;
   background:
@@ -1196,12 +1195,11 @@ html.light .project-period-badge,
   display: flex;
   min-width: 0;
   max-width: 100%;
-  overflow: hidden;
-  min-height: 5.75rem;
+  min-height: 4.8rem;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 0.8rem 0.25rem;
+  padding: 0.6rem 0.25rem;
   text-align: center;
 }
 
@@ -1209,58 +1207,31 @@ html.light .project-period-badge,
   content: "";
   position: absolute;
   top: 0;
-  left: 24%;
-  right: 24%;
+  left: 15%;
+  right: 15%;
   height: 1px;
   background: linear-gradient(90deg, transparent, rgba(52, 211, 153, 0.58), transparent);
   pointer-events: none;
 }
 
 .project-metric-cell+.project-metric-cell {
-  border-top: 1px solid rgba(148, 163, 184, 0.12);
+  border-left: 1px solid rgba(148, 163, 184, 0.14);
 }
 
 .project-metrics-panel-modal .project-metric-cell {
-  min-height: 6.25rem;
-  padding: 1rem 0.75rem;
+  min-height: 5.25rem;
+  padding: 0.75rem 0.35rem;
 }
 
-@media (max-width: 419px) {
+@media (min-width: 640px) {
+  .project-metric-cell {
+    min-height: 5.75rem;
+    padding: 0.8rem 0.5rem;
+  }
 
-  .project-metric-cell,
   .project-metrics-panel-modal .project-metric-cell {
-    min-height: 4.5rem;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 1rem;
-    padding: 0.85rem 1rem;
-    text-align: left;
-  }
-
-  .project-metric-cell dt {
-    order: 1;
-    margin-top: 0;
-  }
-
-  .project-metric-cell dd {
-    order: 2;
-    flex-shrink: 0;
-    text-align: right;
-  }
-
-  .project-metric-cell::before {
-    display: none;
-  }
-}
-
-@media (min-width: 420px) {
-  .project-metrics-panel {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .project-metric-cell+.project-metric-cell {
-    border-top: 0;
-    border-left: 1px solid rgba(148, 163, 184, 0.12);
+    min-height: 6.25rem;
+    padding: 1rem 0.75rem;
   }
 }
 
