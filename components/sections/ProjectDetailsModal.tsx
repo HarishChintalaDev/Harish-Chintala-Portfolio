@@ -118,8 +118,11 @@ export default function ProjectDetailsModal({
             <div
               data-project-modal-scroll
               data-lenis-prevent
+              tabIndex={0}
+              role="region"
+              aria-label={`${project.title} details`}
               onWheel={(e) => e.stopPropagation()}
-              className="scroll-surface min-h-0 flex-1 overflow-y-auto overscroll-contain bg-transparent px-3.5 py-4 sm:px-8 sm:py-8"
+              className="scroll-surface min-h-0 flex-1 overflow-y-auto overscroll-contain bg-transparent px-3.5 py-4 sm:px-8 sm:py-8 focus:outline-none focus-visible:ring-1 focus-visible:ring-cyan-500/50"
             >
               <div className="space-y-5 sm:space-y-6">
                 {/* Metrics Panel */}

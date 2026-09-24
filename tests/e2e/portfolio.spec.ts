@@ -130,8 +130,18 @@ test("has no automatically detectable accessibility violations", async ({ page }
   );
 
   await page.goto("/", { waitUntil: "networkidle" });
-  const results = await new AxeBuilder({ page }).analyze();
+  const results = await new AxeBuilder({ page })
+    .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "best-practice"])
+    .analyze();
   expect(results.violations).toEqual([]);
+
+  // Also test with Architecture & Details modal open against WCAG rules
+  await page.getByRole("button", { name: "Architecture & Details" }).first().click();
+  await expect(page.getByRole("dialog")).toBeVisible();
+  const modalResults = await new AxeBuilder({ page })
+    .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "best-practice"])
+    .analyze();
+  expect(modalResults.violations).toEqual([]);
 });
 
 test("maintains responsive layout without horizontal overflow across all standard viewports", async ({ page }, testInfo) => {

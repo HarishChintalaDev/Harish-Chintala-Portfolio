@@ -91,7 +91,7 @@ export default function ExperienceSection() {
               <Sparkles className="h-3 w-3 text-purple-400" />
               Tap any role to view deliverables &amp; tech stack
             </span>
-            <span className="text-slate-500">
+            <span className="text-slate-400">
               {EXPERIENCES.length} Roles
             </span>
           </div>
@@ -200,9 +200,9 @@ export default function ExperienceSection() {
 
                       {/* Key Deliverables */}
                       <div className="space-y-2.5 px-4 py-3.5">
-                        <h4 className="font-mono text-[10px] font-semibold uppercase tracking-widest text-slate-400">
+                        <h3 className="font-mono text-[10px] font-semibold uppercase tracking-widest text-slate-300">
                           Key Deliverables &amp; Engineering ROI
-                        </h4>
+                        </h3>
                         <ul className="space-y-2.5">
                           {exp.achievements.map((item, i) => (
                             <li
@@ -380,9 +380,9 @@ export default function ExperienceSection() {
 
                 {/* Deliverables */}
                 <div className="space-y-3 px-5 py-5 sm:px-7">
-                  <h4 className="font-mono text-[10px] font-semibold uppercase tracking-widest text-slate-400">
+                  <h3 className="font-mono text-[10px] font-semibold uppercase tracking-widest text-slate-300">
                     Key Deliverables &amp; Engineering ROI
-                  </h4>
+                  </h3>
                   <ul className="space-y-3">
                     {activeExp.achievements.map((item, i) => (
                       <li
